@@ -10,7 +10,7 @@ public class SolveTwoPointer {
 
     public static void main(String[] args) {
 
-        int[] arrs = {0,2,0,5,8};
+        int[] arrs = {4,0,6,0,9,13,0,17}; // output should be [4,6,9,13,17,0,0,0]
 
         //before moving zeroes
         for(int x:arrs){
@@ -20,7 +20,9 @@ public class SolveTwoPointer {
 
         System.out.println();
 
-       moveZeroes(arrs);
+        shiftZeroes(arrs);
+
+    //    moveZeroes(arrs);
   // after moving zeroes
        for(int i:arrs){
            System.out.printf("%d ",i);
@@ -44,4 +46,30 @@ public class SolveTwoPointer {
             }
         }
     }
+
+
+    //another similar approach
+    static void shiftZeroes(int[] sampleArray){
+
+ int l = 0;
+
+ for(int i=0;i<sampleArray.length;i++){
+
+
+
+    if(sampleArray[i]!=0){
+
+    int temp = sampleArray[l];
+
+    sampleArray[l] = sampleArray[i];
+
+    sampleArray[i] = temp;
+
+        l++;
+
+ }
+
+ }
+
+ }
 }
