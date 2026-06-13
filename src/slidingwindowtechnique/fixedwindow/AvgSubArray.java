@@ -20,7 +20,7 @@ public class AvgSubArray {
         int[] arrs = {1,12,-5,-6,50,3};
         int k = 4;
 
-        double result = findMaxAvg(arrs,k);
+        double result = findMaxAverage(arrs,k);
 
 //        System.out.println(Integer.MIN_VALUE);
 
@@ -103,6 +103,35 @@ public class AvgSubArray {
 
             }
             
+        }
+
+        return (double) maxSum/k;
+
+
+    }
+
+    static double findMaxAverage(int[] sampleArray, int k){
+
+        int sum = 0;
+        for(int i=0;i<k;i++){
+
+            sum = sum + sampleArray[i];
+        }
+
+        int maxSum = sum;
+
+        int startIndex=0;
+        int endIndex = k;
+
+        while(endIndex<sampleArray.length){
+
+            sum = sum - sampleArray[startIndex]; // remove the previous element
+            startIndex++;
+
+            sum = sum + sampleArray[endIndex]; // add the next element
+            endIndex++;
+
+            maxSum = Math.max(maxSum,sum); // update maxSum if the current sum is greater
         }
 
         return (double) maxSum/k;
