@@ -14,5 +14,45 @@ public class LongestSubstring {
 
     public static void main(String[] args) {
 
+        String s = "abcabcdebb";
+
+        int result = brute(s);
+
+        System.out.println(result);
+
     }
+
+    static int brute(String s){
+
+        int n = s.length();
+
+        int maxLength = 0;
+
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<=n;j++){
+
+                if(allUnique(s,i,j)){
+                    maxLength = Math.max(maxLength, j-i);
+                }
+            }
+        }
+
+        return maxLength;
+    }
+
+    static boolean allUnique(String s, int start, int end){
+
+        boolean[] charSet = new boolean[128]; // Assuming ASCII character set
+
+        for(int i=start;i<end;i++){
+            char c = s.charAt(i);
+            if(charSet[c]){ // If the character is already in the set, it's not unique
+                return false;
+            }
+            charSet[c] = true; // Mark the character as seen
+        }
+
+        return true; // All characters in the substring are unique
+     }
+
 }

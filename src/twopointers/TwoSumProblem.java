@@ -102,7 +102,7 @@ public class TwoSumProblem {
 
         }
 
-        return new int[]{-1,-1};
+        return new int[2];
 
     }
 
