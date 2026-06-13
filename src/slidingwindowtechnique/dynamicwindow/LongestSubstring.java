@@ -19,7 +19,7 @@ public class LongestSubstring {
 
         String s = "abcabcdebb";
 
-        int result = brute(s);
+        int result = longestSubstring(s);
 
         System.out.println(result);
 
@@ -56,6 +56,35 @@ public class LongestSubstring {
         }
 
         return true; // All characters in the substring are unique
+     }
+
+     static int longestSubstring(String s){
+
+        int n = s.length();
+
+        Set<Character> charSet = new HashSet<>();
+        int maxLength = 0; // Initialize the maximum length of substring without repeating characters
+         int l= 0; // Left pointer for the sliding window
+
+         for(int r=0;r<n;r++){
+
+            //if a duplicate character exists, shrink the window from the left
+             while(charSet.contains(s.charAt(r))) // While the character at the right pointer is already in the set, we have a duplicate
+                {
+
+                charSet.remove(s.charAt(l)); // Remove the leftmost character from the set
+                l++;
+             }
+
+             // Add the current character to the set and update the maximum length
+             charSet.add(s.charAt(r));
+             maxLength = Math.max(maxLength, r-l+1); // Update the maximum length of substring without repeating characters
+
+         }
+       
+        return maxLength; // Return the length of the longest substring without repeating characters
+
+
      }
 
 }
