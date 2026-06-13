@@ -1,5 +1,8 @@
 package slidingwindowtechnique.dynamicwindow;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*
     Given a string s, find the length of the longest substring without repeating characters.
 
@@ -42,14 +45,14 @@ public class LongestSubstring {
 
     static boolean allUnique(String s, int start, int end){
 
-        boolean[] charSet = new boolean[128]; // Assuming ASCII character set
+        Set<Character> charSet = new HashSet<>();
 
         for(int i=start;i<end;i++){
             char c = s.charAt(i);
-            if(charSet[c]){ // If the character is already in the set, it's not unique
+            if(charSet.contains(c)){ // If the character is already in the set, it's not unique
                 return false;
             }
-            charSet[c] = true; // Mark the character as seen
+            charSet.add(c); // Mark the character as seen
         }
 
         return true; // All characters in the substring are unique
